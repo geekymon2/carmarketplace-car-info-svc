@@ -12,6 +12,7 @@ jobs:
     runs-on: self-hosted
     steps:
     - name: generate buildnumber
+      id: buildnumber
       uses: einaregilsson/build-number@v3
       with:
         token: ${{secrets.github_token}}     
@@ -44,5 +45,5 @@ jobs:
       with:
         context: ./car-info-service
         push: true
-        tags: geekymon2/car-info-service:1.0.$BUILD_NUMBER
+        tags: geekymon2/car-info-service:1.0.${{ steps.buildnumber.outputs.build_number }}
         labels: ${{ steps.meta.outputs.labels }}        
