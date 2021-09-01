@@ -24,14 +24,11 @@ jobs:
         java-version: '11'
         distribution: 'adopt'
         cache: maven 
-
-    #  workingdirectory: carmarketplace
-    #  run: mvn -N install --file pom.xml
-
-  #   - name: build service
-  #   - uses: actions/checkout@v2
-  #     workingdirectory: service
-  #     run: mvn -B package --file pom.xml -Dspring.profiles.active=test
+    - name: build root
+      workingdirectory: carmarketplace
+      run: mvn -N install --file pom.xml
+    - name: build service
+      run: mvn -B package --file pom.xml -Dspring.profiles.active=test
 
   # push_to_registry:
   #   name: Push to Docker Hub
