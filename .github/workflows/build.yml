@@ -10,29 +10,27 @@ on:
     branches: [ main ]
 
 jobs:
-  buildroot:
-    name: Build root pom
-      uses: actions/checkout@v2
-      with:
-        repository: geekymon2/carmarketplace
-        token: ${{ secrets.PAT }}
-      run: mvn -N install --file pom.xml
   buildservice:
-    name: Build service pom
+    name: Build project
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v2
     - name: Set up JDK 11
       uses: actions/setup-java@v2
       with:
         java-version: '11'
         distribution: 'adopt'
-        cache: maven  
-    - name: Build with Maven
-      run: |
-        mvn -N install --file pom.xml -Dspring.profiles.active=test
-        mvn -B package --file pom.xml -Dspring.profiles.active=test
-    needs: [buildroot]        
+        cache: maven 
+    - name: build root  
+    - uses: actions/checkout@v2
+      with:
+        repository: geekymon2/carmarketplace
+        path: carfmarketplace
+      workingdirectory: carmarketplace
+      run: mvn -N install --file pom.xml
+    - name: build service
+    - uses: actions/checkout@v2
+      workingdirectory: service
+      run: mvn -B package --file pom.xml -Dspring.profiles.active=test
   push_to_registry:
     name: Push to Docker Hub
     runs-on: ubuntu-latest
