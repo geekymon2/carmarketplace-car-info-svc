@@ -9,7 +9,7 @@ on:
 jobs:
   buildservice:
     name: Build project
-    runs-on: ubuntu-latest
+    runs-on: self-hosted
     steps:
     - name: checkout root  
       uses: actions/checkout@v2
@@ -25,11 +25,7 @@ jobs:
         distribution: 'adopt'
         cache: maven 
     - name: build root
-      working-directory: carmarketplace
-      run: | 
-        pwd
-        ls
-        mvn -N install --file pom.xml
+      run: mvn -N install --file carfmarketplace/pom.xml
     - name: build service
       run: mvn -B package --file pom.xml -Dspring.profiles.active=test
 
