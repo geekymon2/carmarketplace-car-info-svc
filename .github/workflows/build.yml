@@ -8,7 +8,7 @@ on:
 
 jobs:
   buildservice:
-    name: Build project
+    name: Build and Push to DockerHub
     runs-on: self-hosted
     steps:
     - name: generate buildnumber
