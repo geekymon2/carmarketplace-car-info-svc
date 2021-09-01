@@ -11,6 +11,7 @@ on:
 
 jobs:
   buildservice:
+  
     name: Build project
     runs-on: ubuntu-latest
     steps:
@@ -20,17 +21,20 @@ jobs:
         java-version: '11'
         distribution: 'adopt'
         cache: maven 
+
     - name: build root  
-    - uses: actions/checkout@v2
+      uses: actions/checkout@v2
       with:
         repository: geekymon2/carmarketplace
         path: carfmarketplace
       workingdirectory: carmarketplace
       run: mvn -N install --file pom.xml
+
     - name: build service
     - uses: actions/checkout@v2
       workingdirectory: service
       run: mvn -B package --file pom.xml -Dspring.profiles.active=test
+
   push_to_registry:
     name: Push to Docker Hub
     runs-on: ubuntu-latest
