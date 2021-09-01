@@ -26,7 +26,10 @@ jobs:
         cache: maven 
     - name: build root
       working-directory: carmarketplace
-      run: mvn -N install --file pom.xml
+      run: | 
+        pwd
+        ls
+        mvn -N install --file pom.xml
     - name: build service
       run: mvn -B package --file pom.xml -Dspring.profiles.active=test
 
