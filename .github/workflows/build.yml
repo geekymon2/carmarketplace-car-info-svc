@@ -25,7 +25,7 @@ jobs:
         distribution: 'adopt'
         cache: maven 
     - name: build root
-      workingdirectory: carmarketplace
+      working-directory: carmarketplace
       run: mvn -N install --file pom.xml
     - name: build service
       run: mvn -B package --file pom.xml -Dspring.profiles.active=test
