@@ -35,6 +35,12 @@ jobs:
       run: mvn -N install --file carmarketplace/pom.xml
     - name: build service
       run: mvn -B test package jacoco:report --file car-info-service/pom.xml -Dspring.profiles.active=test
+    - name: Upload to codecov
+      uses: codecov/codecov-action@v2
+      with:
+        token: ${{ secrets.CODECOV_TOKEN }}
+        directory: ./coverage/reports/
+        verbose: true    
     - name: dockerhub login
       uses: docker/login-action@v1
       with:

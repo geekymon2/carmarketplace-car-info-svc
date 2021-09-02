@@ -104,7 +104,7 @@
 				<artifactId>jacoco-maven-plugin</artifactId>
 				<version>0.8.7</version>
 				<configuration>
-					<outputDirectory>coverage-reports/jacoco</outputDirectory>
+					<outputDirectory>coverage/reports</outputDirectory>
 				</configuration>
 				<executions>
 					<execution>
