@@ -9,7 +9,7 @@ on:
 jobs:
   buildservice:
     name: Build and Push to DockerHub
-    runs-on: ubuntu-latest
+    runs-on: self-hosted
     steps:
     - name: generate buildnumber
       id: buildnumber
@@ -39,7 +39,7 @@ jobs:
       uses: codecov/codecov-action@v2
       with:
         token: ${{ secrets.CODECOV_TOKEN }}
-        directory: ./coverage/reports/
+        directory: .car-info-service/coverage/reports/
         verbose: true    
     - name: dockerhub login
       uses: docker/login-action@v1
