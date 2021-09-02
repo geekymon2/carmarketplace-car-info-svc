@@ -9,7 +9,7 @@ on:
 jobs:
   buildservice:
     name: Build and Push to DockerHub
-    runs-on: self-hosted
+    runs-on: ubuntu-latest
     steps:
     - name: generate buildnumber
       id: buildnumber
