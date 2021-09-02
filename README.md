@@ -4,7 +4,7 @@ Microservices App for Car Marketplace
 
 ## Status
 
-[![Build and Push to DockerHub](https://github.com/geekymon2/carmarketplace-car-info-svc/actions/workflows/build.yml/badge.svg)](https://github.com/geekymon2/carmarketplace-car-info-svc/actions/workflows/build.yml)
+[![build](https://github.com/geekymon2/carmarketplace-car-info-svc/actions/workflows/build.yml/badge.svg)](https://github.com/geekymon2/carmarketplace-car-info-svc/actions/workflows/build.yml)
 
 [![codecov](https://codecov.io/gh/geekymon2/carmarketplace-car-info-svc/branch/main/graph/badge.svg?token=LH7ATDIHTB)](https://codecov.io/gh/geekymon2/carmarketplace-car-info-svc)
 
