@@ -51,5 +51,5 @@ jobs:
       with:
         context: ./service
         push: true
-        tags: geekymon2/car-info-service:1.0.${{ steps.buildnumber.outputs.build_number }}
+        tags: geekymon2/cm-car-info-svc:1.0.${{ steps.buildnumber.outputs.build_number }}
         labels: ${{ steps.meta.outputs.labels }}        
