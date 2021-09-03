@@ -15,7 +15,11 @@ jobs:
       id: buildnumber
       uses: einaregilsson/build-number@v3
       with:
-        token: ${{secrets.github_token}}     
+        token: ${{secrets.github_token}}
+    - name: load env
+      uses: c-py/action-dotenv-to-setenv@v2
+      with:
+        env-file: .env        
     - name: checkout root  
       uses: actions/checkout@v2
       with:
