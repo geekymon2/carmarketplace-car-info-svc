@@ -10,10 +10,6 @@ jobs:
   buildservice:
     name: build
     runs-on: ubuntu-latest
-    env:
-      IMAGE_NAME: cm-car-info-svc
-      MAJOR_VERSION: 1
-      MINOR_VERSION: 0
     steps:
     - name: generate buildnumber
       id: buildnumber
@@ -57,3 +53,5 @@ jobs:
         push: true
         tags: geekymon2/${{ env.IMAGE_NAME }}:${{ env.MAJOR_VERSION }}.${{ env.MINOR_VERSION }}.${{ steps.buildnumber.outputs.build_number }}
         labels: ${{ steps.meta.outputs.labels }}
+        build-args: |
+          ARTIFACT_NAME=${{ env.ARTIFACT_NAME }}
