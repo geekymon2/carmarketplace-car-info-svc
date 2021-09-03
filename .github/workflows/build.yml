@@ -9,7 +9,7 @@ on:
 jobs:
   buildservice:
     name: build
-    runs-on: ubuntu-latest
+    runs-on: self-hosted
     steps:
     - name: generate buildnumber
       id: buildnumber
@@ -19,7 +19,7 @@ jobs:
     - name: load env
       uses: c-py/action-dotenv-to-setenv@v2
       with:
-        env-file: .env        
+        env-file: .env       
     - name: checkout root  
       uses: actions/checkout@v2
       with:
