@@ -70,4 +70,4 @@ jobs:
         path: service
     - name: start docker compose
       run: docker-compose -f "service/docker-compose.yml" up -d --build
-    needs: build
+    needs: buildservice
