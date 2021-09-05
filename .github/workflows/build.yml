@@ -1,4 +1,4 @@
-name: build
+name: build and deploy - CI
 
 on:
   push:
@@ -62,7 +62,7 @@ jobs:
   
   deployservice:
     name: deploy
-    runs-on: self-hosted
+    runs-on: [self-hosted, ci]
     steps:
     - name: checkout service
       uses: actions/checkout@v2     
