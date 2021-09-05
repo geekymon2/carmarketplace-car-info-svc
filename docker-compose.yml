@@ -2,7 +2,7 @@ version: "3.9"
 services: 
   web: 
     restart: always
-    image: "geekymon2/car-info-service"
+    image: "geekymon2/cm-car-info-svc"
     build: .
     #local setup
     #container runs on port 5000
