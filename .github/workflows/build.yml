@@ -8,7 +8,7 @@ on:
 
 jobs:
   buildservice:
-    name: build
+    name: build & test
     runs-on: ubuntu-latest
     steps:
     - name: generate buildnumber
@@ -55,7 +55,9 @@ jobs:
       with:
         context: ./service
         push: true
-        tags: geekymon2/${{ env.IMAGE_NAME }}:${{ env.MAJOR_VERSION }}.${{ env.MINOR_VERSION }}.${{ steps.buildnumber.outputs.build_number }} | geekymon2/${{ env.IMAGE_NAME }}:latest
+        tags: |
+          geekymon2/${{ env.IMAGE_NAME }}:${{ env.MAJOR_VERSION }}.${{ env.MINOR_VERSION }}.${{ steps.buildnumber.outputs.build_number }}
+          geekymon2/${{ env.IMAGE_NAME }}:latest
         labels: ${{ steps.meta.outputs.labels }}
         build-args: |
           ARTIFACT_NAME=${{ env.ARTIFACT_NAME }}
