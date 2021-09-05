@@ -78,5 +78,5 @@ jobs:
       with:
         path: service
     - name: start docker compose
-      run: docker-compose -f "service/docker-compose-ci.yml" up -d --build
+      run: docker-compose -f "service/docker-compose-ci.yml" up -d --build --build-arg ARTIFACT_NAME=${{ env.ARTIFACT_NAME }}
     needs: buildservice
