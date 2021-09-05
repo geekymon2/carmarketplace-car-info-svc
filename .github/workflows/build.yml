@@ -78,7 +78,9 @@ jobs:
       with:
         path: service
     - name: first terminate existing containers
-      run: docker-compose -f "service/docker-compose-ci.yml" down        
+      working-directory: ./service
+      run: docker-compose -f "docker-compose-ci.yml" down        
     - name: start docker compose
-      run: docker-compose -f "service/docker-compose-ci.yml" up -d
+      working-directory: ./service
+      run: docker-compose -f "docker-compose-ci.yml" up -d
     needs: buildservice
