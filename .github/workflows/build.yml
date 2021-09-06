@@ -9,7 +9,7 @@ on:
 jobs:
   buildservice:
     name: build & test
-    runs-on: [self-hosted, ci]
+    runs-on: ubuntu-latest
     steps:
     - name: generate buildnumber
       id: buildnumber
