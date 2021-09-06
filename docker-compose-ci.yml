@@ -3,6 +3,8 @@ services:
   web: 
     restart: always
     image: "geekymon2/cm-car-info-svc"
+    environment: 
+      ARTIFACT_NAME: "${ARTIFACT_NAME}"
     #local setup
     #container runs on port 5000
     #container exposing port 8080
