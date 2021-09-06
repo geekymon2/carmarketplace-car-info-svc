@@ -82,5 +82,5 @@ jobs:
       run: docker-compose -f "docker-compose-ci.yml" down        
     - name: start docker compose
       working-directory: ./service
-      run: docker-compose -f "docker-compose-ci.yml" up -d
+      run: docker-compose -env-file .env -f "docker-compose-ci.yml" up -d
     needs: buildservice
