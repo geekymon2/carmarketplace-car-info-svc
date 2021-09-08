@@ -75,6 +75,7 @@ jobs:
     steps:
     - name: checkout service
       uses: actions/checkout@v2 
+    - name: apply CI environment profile
       run: echo '\nENVIRONMENT=ci'\nspring_profiles_active=ci >> .env
       with:
         path: service
