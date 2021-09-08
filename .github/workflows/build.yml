@@ -70,7 +70,7 @@ jobs:
         README_FILEPATH: service/README.md   
   
   deployserviceci:
-    name: deploy
+    name: deploy CI
     runs-on: [self-hosted, ci]
     steps:
     - name: checkout service
@@ -88,7 +88,7 @@ jobs:
     needs: buildservice
 
   deployservicesit:
-    name: deploy
+    name: deploy SIT
     runs-on: [self-hosted, sit]
     steps:
     - name: checkout service
