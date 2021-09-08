@@ -6,23 +6,25 @@ services:
     environment: 
       ARTIFACT_NAME: "${ARTIFACT_NAME}"
     #local setup
-    #container runs on port 5000
-    #container exposing port 8080
+    #container runs on port 8080
+    #container exposing port 8880
     #container overrides APP_PORT and APP_PORT_CONTAINER when deployed
     ports:
-      - "${APP_PORT:-8080}:${APP_PORT_CONTAINER:-5000}"
+      - "${APP_PORT:-8880}:${APP_PORT_CONTAINER:-8080}"
     depends_on: 
-      - car-info-service-db
-  car-info-service-db:
-    hostname: "car-info-service-db"
+      - db
+  db:
+    hostname: "db"
     restart: always
-    image: "mcr.microsoft.com/mssql/server"
-    environment: 
-      ACCEPT_EULA: "Y"
-      SA_PASSWORD: "${DB_PASSWORD:-P@ssw0rd}"
-    #local setup
-    #db container runs on port 1433
-    #db container exposing port 1403
-    #db container overrides DB_PORT and DB_PORT_CONTAINER when deployed
-    ports:
-      - "${DB_PORT:-1403}:${DB_PORT_CONTAINER:-1433}"
+    image: mysql:8.0
+    volumes:
+      - db_data:/var/lib/mysql
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: "${DB_ROOT_PASSWORD:-P@ssw0rd}"
+      MYSQL_DATABASE: "${DB_NAME:-carinfodbdev}"
+      MYSQL_USER: sa
+      MYSQL_PASSWORD: ${DB_ROOT_PASSWORD:-P@ssw0rd}
+
+volumes:
+  db_data: {}
