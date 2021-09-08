@@ -75,10 +75,10 @@ jobs:
     steps:
     - name: checkout service
       uses: actions/checkout@v2 
-    - name: apply CI environment profile
-      run: echo '\nENVIRONMENT=ci'\nspring_profiles_active=ci >> .env
       with:
         path: service
+    - name: apply CI environment profile
+      run: echo '\nENVIRONMENT=ci'\nspring_profiles_active=ci >> .env
     - name: first terminate existing containers
       working-directory: ./service
       run: docker-compose -f "docker-compose-ci.yml" down        
