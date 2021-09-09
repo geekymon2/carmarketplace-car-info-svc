@@ -81,7 +81,9 @@ jobs:
       run: printf '\nENVIRONMENT=ci\nspring_profiles_active=ci' >> service/.env
     - name: first terminate existing containers
       working-directory: ./service
-      run: docker-compose -f "docker-compose-ci.yml" down        
+      run: docker-compose -f "docker-compose-ci.yml" down     
+    - name: pull the latest image from dockerhub
+      run: docker pull geekymon2/${{ env.IMAGE_NAME }}
     - name: start docker compose
       working-directory: ./service
       run: docker-compose -f "docker-compose-ci.yml" up -d
@@ -99,7 +101,9 @@ jobs:
       run: printf '\nENVIRONMENT=sit\nspring_profiles_active=sit' >> service/.env        
     - name: first terminate existing containers
       working-directory: ./service
-      run: docker-compose -f "docker-compose-ci.yml" down        
+      run: docker-compose -f "docker-compose-ci.yml" down
+    - name: pull the latest image from dockerhub
+      run: docker pull geekymon2/${{ env.IMAGE_NAME }}
     - name: start docker compose
       working-directory: ./service
       run: docker-compose -f "docker-compose-ci.yml" up -d
