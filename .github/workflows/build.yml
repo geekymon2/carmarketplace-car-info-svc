@@ -78,7 +78,7 @@ jobs:
       with:
         path: service
     - name: apply CI environment profile
-      run: printf '\nENVIRONMENT=ci\nspring_profiles_active=ci' >> service/.env
+      run: printf '\nENVIRONMENT=ci\nSPRING_PROFILES_ACTIVE=ci' >> service/.env
     - name: load env
       uses: c-py/action-dotenv-to-setenv@v2
       with:
@@ -102,7 +102,7 @@ jobs:
       with:
         path: service
     - name: apply SIT environment profile
-      run: printf '\nENVIRONMENT=sit\nspring_profiles_active=sit' >> service/.env
+      run: printf '\nENVIRONMENT=sit\nSPRING_PROFILES_ACTIVE=sit' >> service/.env
     - name: load env
       uses: c-py/action-dotenv-to-setenv@v2
       with:
