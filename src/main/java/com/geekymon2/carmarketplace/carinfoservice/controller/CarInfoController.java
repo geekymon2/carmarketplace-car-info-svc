@@ -29,6 +29,11 @@ public class CarInfoController {
         this.mapper = mapper;
     }
 
+    @GetMapping(value = "/status")
+    public String getStatus() {
+        return System.getenv("ENVIRONMENT");
+    }
+
     @GetMapping(value = "/makes")
     public List<CarMakeDto> getCarMakes() {
         return service.getAllCarMakes().stream().map(this::makeToDto).collect(Collectors.toList());

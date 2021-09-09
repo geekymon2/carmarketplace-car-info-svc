@@ -7,6 +7,7 @@ services:
     environment: 
       ARTIFACT_NAME: "${ARTIFACT_NAME}"
       SPRING_PROFILES_ACTIVE: "${SPRING_PROFILES_ACTIVE}"
+      ENVIRONMENT: "${ENVIRONMENT}"
     #local setup
     #container runs on port 8080
     #container exposing port 8880
