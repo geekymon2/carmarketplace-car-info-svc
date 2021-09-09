@@ -79,6 +79,10 @@ jobs:
         path: service
     - name: apply CI environment profile
       run: printf '\nENVIRONMENT=ci\nspring_profiles_active=ci' >> service/.env
+    - name: load env
+      uses: c-py/action-dotenv-to-setenv@v2
+      with:
+        env-file: service/.env
     - name: first terminate existing containers
       working-directory: ./service
       run: docker-compose -f "docker-compose-ci.yml" down     
@@ -98,7 +102,11 @@ jobs:
       with:
         path: service
     - name: apply SIT environment profile
-      run: printf '\nENVIRONMENT=sit\nspring_profiles_active=sit' >> service/.env        
+      run: printf '\nENVIRONMENT=sit\nspring_profiles_active=sit' >> service/.env
+    - name: load env
+      uses: c-py/action-dotenv-to-setenv@v2
+      with:
+        env-file: service/.env
     - name: first terminate existing containers
       working-directory: ./service
       run: docker-compose -f "docker-compose-ci.yml" down
