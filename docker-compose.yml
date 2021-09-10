@@ -1,6 +1,6 @@
 version: "3.9"
 services: 
-  web: 
+  cm-car-info-svc-web: 
     restart: always
     image: "geekymon2/cm-car-info-svc"
     environment: 
@@ -14,8 +14,8 @@ services:
     ports:
       - "${APP_PORT:-8880}:${APP_PORT_CONTAINER:-8080}"
     depends_on: 
-      - db
-  db:
+      - cm-car-info-svc-db
+  cm-car-info-svc-db:
     hostname: "db"
     restart: always
     image: mysql:8.0
