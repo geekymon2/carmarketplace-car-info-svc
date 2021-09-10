@@ -83,9 +83,9 @@ jobs:
       uses: c-py/action-dotenv-to-setenv@v2
       with:
         env-file: service/.env
-    - name: first terminate existing containers
+    - name: first stop containers
       working-directory: ./service
-      run: docker-compose -f "docker-compose.yml" down     
+      run: docker-compose -f "docker-compose.yml" stop     
     - name: pull the latest image from dockerhub
       run: docker pull geekymon2/${{ env.IMAGE_NAME }}
     - name: start docker compose
@@ -107,9 +107,9 @@ jobs:
       uses: c-py/action-dotenv-to-setenv@v2
       with:
         env-file: service/.env
-    - name: first terminate existing containers
+    - name: first stop containers
       working-directory: ./service
-      run: docker-compose -f "docker-compose.yml" down
+      run: docker-compose -f "docker-compose.yml" stop
     - name: pull the latest image from dockerhub
       run: docker pull geekymon2/${{ env.IMAGE_NAME }}
     - name: start docker compose
