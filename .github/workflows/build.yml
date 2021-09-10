@@ -25,10 +25,12 @@ jobs:
       uses: actions/checkout@v2     
       with:
         path: service
-    - name: load env
-      uses: c-py/action-dotenv-to-setenv@v2
+    - name: read docker properties
+      uses: madhead/read-java-properties@latest
+      id: docker
       with:
-        env-file: service/.env 
+        file: service/docker.properties
+        all: true           
     - name: Set up JDK 11
       uses: actions/setup-java@v2
       with:
@@ -56,17 +58,17 @@ jobs:
         context: ./service
         push: true
         tags: |
-          geekymon2/${{ env.IMAGE_NAME }}:${{ env.MAJOR_VERSION }}.${{ env.MINOR_VERSION }}.${{ steps.buildnumber.outputs.build_number }}
-          geekymon2/${{ env.IMAGE_NAME }}:latest
+          geekymon2/${{ steps.docker.outputs.IMAGE_NAME }}:${{ steps.docker.outputs.MAJOR_VERSION }}.${{ steps.docker.outputs.MINOR_VERSION }}.${{ steps.buildnumber.outputs.build_number }}
+          geekymon2/${{ steps.docker.outputs.IMAGE_NAME }}:latest
         labels: ${{ steps.meta.outputs.labels }}
         build-args: |
-          ARTIFACT_NAME=${{ env.ARTIFACT_NAME }}
+          ARTIFACT_NAME=${{ steps.docker.outputs.ARTIFACT_NAME }}
     - name: Docker Hub Description
       uses: peter-evans/dockerhub-description@v2
       env:
         DOCKERHUB_USERNAME: ${{ secrets.DOCKER_USERNAME }}
         DOCKERHUB_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
-        DOCKERHUB_REPOSITORY: geekymon2/${{ env.IMAGE_NAME }}   
+        DOCKERHUB_REPOSITORY: geekymon2/${{ steps.docker.outputs.IMAGE_NAME }}   
         README_FILEPATH: service/README.md   
   
   deployserviceci:
@@ -77,8 +79,14 @@ jobs:
       uses: actions/checkout@v2 
       with:
         path: service
+    - name: read docker properties
+      uses: madhead/read-java-properties@latest
+      id: docker
+      with:
+        file: service/docker.properties
+        all: true              
     - name: apply CI environment profile
-      run: printf '\nENVIRONMENT=ci\nSPRING_PROFILES_ACTIVE=ci' >> service/.env
+      run: printf 'ENVIRONMENT=ci\nSPRING_PROFILES_ACTIVE=ci' >> service/.env
     - name: load env
       uses: c-py/action-dotenv-to-setenv@v2
       with:
@@ -87,7 +95,7 @@ jobs:
       working-directory: ./service
       run: docker-compose -f "docker-compose.yml" stop     
     - name: pull the latest image from dockerhub
-      run: docker pull geekymon2/${{ env.IMAGE_NAME }}
+      run: docker pull geekymon2/${{ steps.docker.outputs.IMAGE_NAME }}
     - name: start docker compose
       working-directory: ./service
       run: docker-compose -f "docker-compose.yml" up -d
@@ -101,6 +109,12 @@ jobs:
       uses: actions/checkout@v2     
       with:
         path: service
+    - name: read docker properties
+      uses: madhead/read-java-properties@latest
+      id: docker
+      with:
+        file: service/docker.properties
+        all: true              
     - name: apply SIT environment profile
       run: printf '\nENVIRONMENT=sit\nSPRING_PROFILES_ACTIVE=sit' >> service/.env
     - name: load env
@@ -111,7 +125,7 @@ jobs:
       working-directory: ./service
       run: docker-compose -f "docker-compose.yml" stop
     - name: pull the latest image from dockerhub
-      run: docker pull geekymon2/${{ env.IMAGE_NAME }}
+      run: docker pull geekymon2/${{ steps.docker.outputs.IMAGE_NAME }}
     - name: start docker compose
       working-directory: ./service
       run: docker-compose -f "docker-compose.yml" up -d
