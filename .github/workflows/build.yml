@@ -84,7 +84,7 @@ jobs:
       id: docker
       with:
         file: service/docker.properties
-        all: true              
+        all: true
     - name: apply CI environment profile
       run: printf 'ENVIRONMENT=ci\nSPRING_PROFILES_ACTIVE=ci' >> service/.env
     - name: load env
@@ -114,7 +114,7 @@ jobs:
       id: docker
       with:
         file: service/docker.properties
-        all: true              
+        all: true
     - name: apply SIT environment profile
       run: printf '\nENVIRONMENT=sit\nSPRING_PROFILES_ACTIVE=sit' >> service/.env
     - name: load env
@@ -129,4 +129,4 @@ jobs:
     - name: start docker compose
       working-directory: ./service
       run: docker-compose -f "docker-compose.yml" up -d
-    needs: buildservice    
+    needs: buildservice
