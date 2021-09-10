@@ -5,7 +5,7 @@ services:
     image: "geekymon2/cm-car-info-svc"
     build: .
     environment: 
-      ARTIFACT_NAME: "${ARTIFACT_NAME}"
+      ARTIFACT_NAME: "car-info-service"
       SPRING_PROFILES_ACTIVE: "${SPRING_PROFILES_ACTIVE}"
       ENVIRONMENT: "${ENVIRONMENT}"
     #local setup
