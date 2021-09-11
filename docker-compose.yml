@@ -6,7 +6,7 @@ services:
     environment: 
       ARTIFACT_NAME: "car-info-service"
       SPRING_PROFILES_ACTIVE: "${SPRING_PROFILES_ACTIVE}"
-      ENVIRONMENT: "${ENVIRONMENT}"            
+      ENVIRONMENT: "${ENVIRONMENT}"
     #local setup
     #container runs on port 8080
     #container exposing port 8880
