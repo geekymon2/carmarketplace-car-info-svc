@@ -63,6 +63,7 @@ jobs:
         labels: ${{ steps.meta.outputs.labels }}
         build-args: |
           ARTIFACT_NAME=${{ steps.docker.outputs.ARTIFACT_NAME }}
+          IMAGE_VERSION=${{ steps.docker.outputs.IMAGE_NAME }}:${{ steps.docker.outputs.MAJOR_VERSION }}.${{ steps.docker.outputs.MINOR_VERSION }}.${{ steps.buildnumber.outputs.build_number }}
     - name: Docker Hub Description
       uses: peter-evans/dockerhub-description@v2
       env:

@@ -31,7 +31,7 @@ public class CarInfoController {
 
     @GetMapping(value = "/status")
     public String getStatus() {
-        return System.getenv("ENVIRONMENT");
+        return String.format("ENV: %s, HOST: %s", System.getenv("ENVIRONMENT"),System.getenv("HOSTNAME"));
     }
 
     @GetMapping(value = "/makes")
