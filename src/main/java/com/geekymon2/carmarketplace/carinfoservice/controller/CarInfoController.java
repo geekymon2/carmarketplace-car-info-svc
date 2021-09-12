@@ -5,6 +5,7 @@ import com.geekymon2.carmarketplace.carinfoservice.entities.CarModel;
 import com.geekymon2.carmarketplace.carinfoservice.entities.CarModelType;
 import com.geekymon2.carmarketplace.carinfoservice.models.CarMakeDto;
 import com.geekymon2.carmarketplace.carinfoservice.models.CarModelDto;
+import com.geekymon2.carmarketplace.carinfoservice.models.StatusDto;
 import com.geekymon2.carmarketplace.carinfoservice.serviceimpl.CarInfoServiceImpl;
 import org.modelmapper.ModelMapper;
 import org.springframework.http.HttpStatus;
@@ -30,8 +31,8 @@ public class CarInfoController {
     }
 
     @GetMapping(value = "/status")
-    public String getStatus() {
-        return String.format("ENV: %s, HOST: %s", System.getenv("ENVIRONMENT"),System.getenv("HOSTNAME"));
+    public StatusDto getStatus() {
+        return new StatusDto(System.getenv("ENVIRONMENT"),"", System.getenv("HOSTNAME"));
     }
 
     @GetMapping(value = "/makes")
