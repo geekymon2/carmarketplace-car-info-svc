@@ -15,15 +15,23 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import lombok.extern.slf4j.Slf4j;
+
+import java.io.IOException;
+import java.net.UnknownHostException;
+import java.nio.file.Files;
 import java.util.List;
 import java.util.stream.Collectors;
+import java.nio.file.Paths;
 
+@Slf4j
 @RestController
 @RequestMapping("/car")
 public class CarInfoController {
 
     private final CarInfoServiceImpl service;
     private final ModelMapper mapper;
+    private final String UNKNOWN_LABEL = "unknown";
 
     public CarInfoController(CarInfoServiceImpl service, ModelMapper mapper) {
         this.service = service;
@@ -32,7 +40,25 @@ public class CarInfoController {
 
     @GetMapping(value = "/status")
     public StatusDto getStatus() {
-        return new StatusDto(System.getenv("ENVIRONMENT"),"", System.getenv("HOSTNAME"));
+        String hostname = "";
+        String environment = "";
+        String version = "0.0.0";
+
+        try {
+            hostname = java.net.InetAddress.getLocalHost().getHostName();
+            environment = System.getenv("ENVIRONMENT");
+            version = Files.readString(Paths.get("/version.properties")).split("=")[1];
+        }
+        catch (UnknownHostException uhx) {
+            hostname = UNKNOWN_LABEL;
+            log.error(String.format("Error getting hostname: %s", uhx));
+        }
+        catch (IOException iox) {
+            version = UNKNOWN_LABEL;
+            log.error(String.format("Error getting version: %s", iox));
+        }
+
+        return new StatusDto(environment, version, hostname);
     }
 
     @GetMapping(value = "/makes")
