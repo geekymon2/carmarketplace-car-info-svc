@@ -1,26 +1,6 @@
 spring:
   application:
     name: car-info-service
-  datasource:
-    url: jdbc:mysql://localhost:3306/carinfodbdev
-    driverClassName: com.mysql.jdbc.Driver
-    username: root
-    password: P@ssw0rd
-  jpa:
-    database-platform: org.hibernate.dialect.MySQL55Dialect
-    defer-datasource-initialization: true
-    show-sql: true
-    generate-ddl: true
-    hibernate:
-      ddl-auto: create-drop
-    properties:
-      hibernate:
-        format_sql: true
-  sql:
-    init:
-      platform: mysql
-      data-locations: classpath:data-mysql.sql
-      mode: always
   config:
     import: optional:configserver:http://localhost:8888
   cloud:
@@ -29,20 +9,6 @@ spring:
       fail-fast: false
       retry:
         maxAttempts: 20
-
 server:
-  port: 8080
   servlet:
     context-path: ${base.context.path}
-
-eureka:
-  client:
-    enabled: true
-    serviceUrl:
-      defaultZone: http://localhost:8761/eureka
-  instance:
-    prefer-ip-address: true
-
-db:
-  host: localhost
-  port: 1111
