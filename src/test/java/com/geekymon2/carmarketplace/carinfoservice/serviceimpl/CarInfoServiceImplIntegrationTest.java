@@ -25,7 +25,7 @@ import static org.junit.jupiter.api.Assertions.assertNotEquals;
 @SpringBootTest
 @AutoConfigureTestDatabase
 @ActiveProfiles("test")
-@TestPropertySource(locations = "classpath:application-test.properties")
+@TestPropertySource(locations = "classpath:application-test.yml")
 public class CarInfoServiceImplIntegrationTest {
 
     private final CarInfoServiceImpl impl;

@@ -31,7 +31,7 @@ import org.springframework.test.context.TestPropertySource;
 @SpringBootTest
 @AutoConfigureTestDatabase
 @ActiveProfiles("test")
-@TestPropertySource(locations = "classpath:application-test.properties")
+@TestPropertySource(locations = "classpath:application-test.yml")
 public class CarInfoControllerIntegrationTest {
     private final CarInfoController controller;
 
