@@ -23,10 +23,10 @@ services:
       - db_data:/var/lib/mysql
     restart: always
     environment:
-      MYSQL_ROOT_PASSWORD: "${DB_CARINFO_PASSWD:-P@ssw0rd}"
-      MYSQL_DATABASE: "${DB_CARINFO_NAME:-carinfodbdev}"
+      MYSQL_ROOT_PASSWORD: "${CARINFODB_PASSWD:-P@ssw0rd}"
+      MYSQL_DATABASE: "${CARINFODB_NAME:-carinfodbdev}"
       MYSQL_USER: sa
-      MYSQL_PASSWORD: ${DB_CARINFO_PASSWD:-P@ssw0rd}
+      MYSQL_PASSWORD: ${CARINFODB_PASSWD:-P@ssw0rd}
 
 volumes:
   db_data: {}

@@ -1,0 +1,48 @@
+#! /bin/bash
+source docker.properties
+
+ENV=$1
+DBNAME=$2
+DBPASSWD=$3
+
+if [ -z "$ENV" ]
+then
+    echo 'Environment cannot be blank!'
+    exit 0
+fi
+
+if [ -z "$DBNAME" ]
+then 
+    echo 'DBNAME cannot be blank!'
+    exit 0
+fi
+
+if [ -z "$DBPASSWD" ]
+then 
+    echo 'DBPASSWD cannot be blank!'
+    exit 0
+fi
+
+if [ -f "docker.properties" ]
+then
+    source docker.properties
+else
+    echo 'docker.properties not found!'
+fi
+
+
+echo "Starting Deployment for Image: $IMAGE_NAME."
+echo "- Creating Environment Variables"
+printf 'ENVIRONMENT=$ENV\nSPRING_PROFILES_ACTIVE=$ENV\CARINFODB_NAME=$DBNAME\nCARINFODB_PASSWD=$DBPASSWD' >> .env
+echo "- Loading Environment Variables"
+if [ -f .env ]
+then
+  export $(cat .env | sed 's/#.*//g' | xargs)
+fi
+echo "- Stopping containers"
+docker-compose -f "docker-compose.yml" stop
+echo "- Pull the latest docker image"
+docker pull "geekymon2/$IMAGE_NAME"
+echo "- Starting Container"
+docker-compose -f "docker-compose.yml" up -d
+echo "- Deployment Complete."
