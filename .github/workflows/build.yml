@@ -82,7 +82,7 @@ jobs:
       with:
         path: service
     - name: run deployment script
-      run: ./deploy.sh carinfodbci  ${{ secrets.DB_PASSWORD }}"
+      run: ./deploy.sh carinfodbci  ${{ secrets.DB_PASSWORD }}
       working-directory: ./service
     needs: buildservice
 
@@ -96,6 +96,6 @@ jobs:
       with:
         path: service
     - name: run deployment script
-      run: ./deploy.sh carinfodbsit  ${{ secrets.DB_PASSWORD }}"
+      run: ./deploy.sh carinfodbsit  ${{ secrets.DB_PASSWORD }}
       working-directory: ./service
     needs: buildservice
