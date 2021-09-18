@@ -19,8 +19,6 @@ services:
     hostname: "db"
     restart: always
     image: mysql:8.0
-    volumes:
-      - db_data:/var/lib/mysql
     restart: always
     ports:
       - "${DB_PORT:-3006}:${DB_PORT_CONTAINER:-3306}"
@@ -29,5 +27,3 @@ services:
       MYSQL_DATABASE: "${CARINFO_DB_NAME}"
       MYSQL_USER: sa
       MYSQL_PASSWORD: "${CARINFO_DB_PASSWORD}"
-volumes:
-  db_data: {}
