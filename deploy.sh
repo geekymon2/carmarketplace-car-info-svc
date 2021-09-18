@@ -33,7 +33,7 @@ fi
 
 echo "Starting Deployment for Image: $IMAGE_NAME."
 echo "- Creating Environment Variables"
-printf 'ENVIRONMENT=$ENV\nSPRING_PROFILES_ACTIVE=$ENV\CARINFODB_NAME=$DB_NAME\nCARINFODB_PASSWD=$DB_PASSWORD' >> .env
+printf "ENVIRONMENT=$ENV\nSPRING_PROFILES_ACTIVE=$ENV\nCARINFODB_NAME=$DB_NAME\nCARINFODB_PASSWD=$DB_PASSWORD" >> .env
 echo "- Loading Environment Variables"
 if [ -f .env ]
 then
