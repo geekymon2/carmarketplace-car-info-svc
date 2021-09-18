@@ -22,11 +22,12 @@ services:
     volumes:
       - db_data:/var/lib/mysql
     restart: always
+    ports:
+      - "${DB_PORT:-3006}:${DB_PORT_CONTAINER:-3306}"
     environment:
-      MYSQL_ROOT_PASSWORD: "${CARINFODB_PASSWD:-P@ssw0rd}"
-      MYSQL_DATABASE: "${CARINFODB_NAME:-carinfodbdev}"
+      MYSQL_ROOT_PASSWORD: "${CARINFO_DB_PASSWORD:-P@ssw0rd}"
+      MYSQL_DATABASE: "${CARINFO_DB_NAME:-carinfodbdev}"
       MYSQL_USER: sa
-      MYSQL_PASSWORD: ${CARINFODB_PASSWD:-P@ssw0rd}
-
+      MYSQL_PASSWORD: ${CARINFO_DB_PASSWORD:-P@ssw0rd}
 volumes:
   db_data: {}
