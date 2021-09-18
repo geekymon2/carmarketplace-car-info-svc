@@ -2,8 +2,8 @@
 source docker.properties
 
 ENV=$1
-DBNAME=$2
-DBPASSWD=$3
+DB_NAME=$2
+DB_PASSWORD=$3
 
 if [ -z "$ENV" ]
 then
@@ -11,15 +11,15 @@ then
     exit 0
 fi
 
-if [ -z "$DBNAME" ]
+if [ -z "$DB_NAME" ]
 then 
-    echo 'DBNAME cannot be blank!'
+    echo 'DB_NAME cannot be blank!'
     exit 0
 fi
 
-if [ -z "$DBPASSWD" ]
+if [ -z "$DB_PASSWORD" ]
 then 
-    echo 'DBPASSWD cannot be blank!'
+    echo 'DB_PASSWORD cannot be blank!'
     exit 0
 fi
 
@@ -33,7 +33,7 @@ fi
 
 echo "Starting Deployment for Image: $IMAGE_NAME."
 echo "- Creating Environment Variables"
-printf 'ENVIRONMENT=$ENV\nSPRING_PROFILES_ACTIVE=$ENV\CARINFODB_NAME=$DBNAME\nCARINFODB_PASSWD=$DBPASSWD' >> .env
+printf 'ENVIRONMENT=$ENV\nSPRING_PROFILES_ACTIVE=$ENV\CARINFODB_NAME=$DB_NAME\nCARINFODB_PASSWD=$DB_PASSWORD' >> .env
 echo "- Loading Environment Variables"
 if [ -f .env ]
 then
