@@ -7,7 +7,7 @@ jobs:
     name: deploy CI
     runs-on: [self-hosted, ci]
     steps:
-    - name: checkout root  
+    - name: checkout root
       uses: actions/checkout@v2
       with:
         repository: geekymon2/carmarketplace
