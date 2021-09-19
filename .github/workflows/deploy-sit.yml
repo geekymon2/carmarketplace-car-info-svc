@@ -1,13 +1,13 @@
-name: deploy ci
+name: deploy sit
 on:
   repository_dispatch:
 jobs:
   deployservice:
-    environment: ci
-    name: deploy CI
-    runs-on: [self-hosted, ci]
+    environment: sit
+    name: deploy SIT
+    runs-on: [self-hosted, sit]
     steps:
-    - name: checkout root  
+    - name: checkout root
       uses: actions/checkout@v2
       with:
         repository: geekymon2/carmarketplace
@@ -17,5 +17,5 @@ jobs:
       with:
         path: service
     - name: run deployment script
-      run: ./deploy.sh ci carinfodbci  ${{ secrets.DB_PASSWORD }}
+      run: ./deploy.sh sit carinfodbsit  ${{ secrets.DB_PASSWORD }}
       working-directory: ./service
