@@ -1,6 +1,6 @@
 name: deploy sit
 on:
-  repository_dispatch:
+  workflow_dispatch:
 jobs:
   deployservice:
     environment: sit
