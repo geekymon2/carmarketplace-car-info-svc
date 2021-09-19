@@ -90,22 +90,3 @@ jobs:
       run: ./deploy.sh ci carinfodbci  ${{ secrets.DB_PASSWORD }}
       working-directory: ./service
     needs: buildservice
-
-  deployservicesit:
-    environment: sit
-    name: deploy SIT
-    runs-on: [self-hosted, sit]
-    steps:
-    - name: checkout root  
-      uses: actions/checkout@v2
-      with:
-        repository: geekymon2/carmarketplace
-        path: root    
-    - name: checkout service
-      uses: actions/checkout@v2 
-      with:
-        path: service
-    - name: run deployment script
-      run: ./deploy.sh sit carinfodbsit  ${{ secrets.DB_PASSWORD }}
-      working-directory: ./service
-    needs: buildservice
