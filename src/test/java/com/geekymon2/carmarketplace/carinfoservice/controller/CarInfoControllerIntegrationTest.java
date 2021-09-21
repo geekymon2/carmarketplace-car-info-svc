@@ -16,8 +16,10 @@ import com.geekymon2.carmarketplace.carinfoservice.exception.InvalidParameterExc
 import com.geekymon2.carmarketplace.carinfoservice.exception.RecordNotFoundException;
 import com.geekymon2.carmarketplace.carinfoservice.models.CarMakeDto;
 import com.geekymon2.carmarketplace.carinfoservice.models.CarModelDto;
+import com.geekymon2.carmarketplace.carinfoservice.models.StatusDto;
 import com.geekymon2.carmarketplace.carinfoservice.serviceimpl.CarInfoServiceImpl;
 
+import lombok.SneakyThrows;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.modelmapper.ModelMapper;
@@ -38,6 +40,14 @@ public class CarInfoControllerIntegrationTest {
     @Autowired
     public CarInfoControllerIntegrationTest(CarInfoServiceImpl service, ModelMapper mapper) {
         this.controller = new CarInfoController(service, mapper);
+    }
+
+    @SneakyThrows
+    @Test
+    @DisplayName("Test status endpoint.")
+    void getStatus() {
+        StatusDto status = controller.getStatus();
+        assertThat(status.getHostname().equals(java.net.InetAddress.getLocalHost().getHostName())).isTrue();
     }
 
     @Test

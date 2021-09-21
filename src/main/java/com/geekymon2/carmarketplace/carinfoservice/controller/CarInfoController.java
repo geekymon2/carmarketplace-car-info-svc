@@ -26,7 +26,7 @@ import java.nio.file.Paths;
 
 @Slf4j
 @RestController
-@RequestMapping("/car")
+@RequestMapping("/carinfo")
 public class CarInfoController {
 
     private final CarInfoServiceImpl service;
@@ -45,6 +45,7 @@ public class CarInfoController {
         String version = "0.0.0";
 
         try {
+            log.info("Performing status check.");
             hostname = java.net.InetAddress.getLocalHost().getHostName();
             environment = System.getenv("ENVIRONMENT");
             version = Files.readString(Paths.get("/version.properties")).split("=")[1];
