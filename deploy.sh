@@ -1,6 +1,4 @@
 #! /bin/bash
-source docker.properties
-
 ENV=$1
 DB_NAME=$2
 DB_PASSWORD=$3
