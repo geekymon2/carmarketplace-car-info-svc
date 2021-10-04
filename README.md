@@ -10,7 +10,7 @@ Microservices App for Car Marketplace
 
 **Car Info Service**
 
-This service provides information for car make brands and models. Get information on all the makes, models, and types of cars, also filter them by make and type. 
+This micro service provides information for car make brands and models. Get information on all the makes, models, and types of cars, also filter them by make and type. 
 
 ## Documentation
 
