@@ -10,5 +10,6 @@ import lombok.NoArgsConstructor;
 public class StatusDto {
     String environment;
     String version;
-    String hostname;    
+    String hostname;  
+    String description;  
 }

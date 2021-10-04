@@ -58,7 +58,7 @@ public class CarInfoController {
             log.error(String.format("Error getting version: %s", iox));
         }
 
-        return new StatusDto(environment, version, hostname);
+        return new StatusDto(environment, version, hostname, "This is the status endpoint");
     }
 
     @GetMapping(value = "/makes")
