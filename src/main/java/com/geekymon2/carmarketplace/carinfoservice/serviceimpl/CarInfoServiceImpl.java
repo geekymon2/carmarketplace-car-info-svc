@@ -1,11 +1,5 @@
 package com.geekymon2.carmarketplace.carinfoservice.serviceimpl;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Optional;
-import java.util.stream.Collectors;
-
 import com.geekymon2.carmarketplace.carinfoservice.entities.CarMake;
 import com.geekymon2.carmarketplace.carinfoservice.entities.CarModel;
 import com.geekymon2.carmarketplace.carinfoservice.entities.CarModelType;
@@ -14,8 +8,14 @@ import com.geekymon2.carmarketplace.carinfoservice.exception.RecordNotFoundExcep
 import com.geekymon2.carmarketplace.carinfoservice.repository.CarMakeRepository;
 import com.geekymon2.carmarketplace.carinfoservice.repository.CarModelRepository;
 import com.geekymon2.carmarketplace.carinfoservice.service.CarInfoService;
-
+import com.geekymon2.carmarketplace.core.CarMakeName;
 import org.springframework.stereotype.Service;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 public class CarInfoServiceImpl implements CarInfoService {
@@ -90,17 +90,26 @@ public class CarInfoServiceImpl implements CarInfoService {
 
     private CarMake validateMake(String makeName) {
         CarMake make;
+        CarMakeName name;
 
+        //first check for nulls and blanks
         if (makeName == null || makeName.isBlank()) {
             return null;
         }
-        else {
-            make = carMakeRepository.findOneByName(makeName);
-            if (make == null) {
-                throw new InvalidParameterException(String.format("Invalid make '%s'", makeName));
-            }
-            return make;
+
+        try {
+            name = CarMakeName.valueOf(makeName);
+        } catch (IllegalArgumentException e) {
+            throw new InvalidParameterException(String.format("Invalid make '%s'", makeName));
         }
+
+        make = carMakeRepository.findOneByName(name);
+        if (make == null) {
+            throw new InvalidParameterException(String.format("Invalid make '%s'", makeName));
+        }
+
+        return make;
+
     }
 
     private CarModelType validateType(String typeName) {

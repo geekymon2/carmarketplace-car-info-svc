@@ -5,6 +5,8 @@ import com.geekymon2.carmarketplace.carinfoservice.entities.CarModel;
 import com.geekymon2.carmarketplace.carinfoservice.entities.CarModelType;
 import com.geekymon2.carmarketplace.carinfoservice.repository.CarMakeRepository;
 import com.geekymon2.carmarketplace.carinfoservice.repository.CarModelRepository;
+import com.geekymon2.carmarketplace.core.CarMakeName;
+
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -72,7 +74,7 @@ public class CarInfoServiceImplIntegrationTest {
     @DisplayName("Test valid car make by id.")
     void getCarMakeByIdValidTest() {
         CarMake actual = impl.getCarMakeById(1L);
-        CarMake expected = new CarMake(1L, "FORD", "USA");
+        CarMake expected = new CarMake(1L, CarMakeName.FORD, "USA");
         assertTrue(isMakeEqual(expected, actual));
     }
 
@@ -80,7 +82,7 @@ public class CarInfoServiceImplIntegrationTest {
     @DisplayName("Test invalid car make by id.")
     void getCarMakeByIdInValidTest() {
         CarMake actual = impl.getCarMakeById(1L);
-        CarMake expected = new CarMake(99L, "XXX", "XXX");
+        CarMake expected = new CarMake(99L, CarMakeName.FORD, "XXX");
         assertFalse(isMakeEqual(expected, actual));
     }
 
@@ -90,7 +92,7 @@ public class CarInfoServiceImplIntegrationTest {
         List<CarModel> actual = impl.getCarModels("FORD", "SEDAN");
         List<CarModel>  expected = new ArrayList<>();
 
-        CarMake ford = new CarMake(1L,"FORD","USA");
+        CarMake ford = new CarMake(1L,CarMakeName.FORD,"USA");
 
         expected.add(new CarModel(1L, "Ford Falcon", CarModelType.SEDAN, ford));
         expected.add(new CarModel(2L, "Ford Focus Sedan", CarModelType.SEDAN, ford));
@@ -108,8 +110,8 @@ public class CarInfoServiceImplIntegrationTest {
         List<CarModel> actual = impl.getCarModels(null, "SEDAN");
         List<CarModel>  expected = new ArrayList<>();
 
-        CarMake ford = new CarMake(1L,"FORD","USA");
-        CarMake audi = new CarMake(2L,"AUDI","Germany");
+        CarMake ford = new CarMake(1L,CarMakeName.FORD,"USA");
+        CarMake audi = new CarMake(2L,CarMakeName.AUDI,"Germany");
 
         expected.add(new CarModel(1L, "Ford Falcon", CarModelType.SEDAN, ford));
         expected.add(new CarModel(2L, "Ford Focus Sedan", CarModelType.SEDAN, ford));
@@ -130,7 +132,7 @@ public class CarInfoServiceImplIntegrationTest {
         List<CarModel> actual = impl.getCarModels("AUDI", null);
         List<CarModel>  expected = new ArrayList<>();
 
-        CarMake audi = new CarMake(2L,"AUDI","Germany");
+        CarMake audi = new CarMake(2L,CarMakeName.AUDI,"Germany");
 
         expected.add(new CarModel(5L, "Audi A4 Sedan", CarModelType.SEDAN, audi));
         expected.add(new CarModel(6L, "Audi S4 Sedan", CarModelType.SEDAN, audi));
@@ -161,7 +163,7 @@ public class CarInfoServiceImplIntegrationTest {
     @DisplayName("Test valid car model by id.")
     void getCarModelByIdValidTest() {
         CarModel actual = impl.getCarModelById(1L);
-        CarModel expected = new CarModel(1L, "Ford Falcon", CarModelType.SEDAN, new CarMake(1L, "FORD", "USA"));
+        CarModel expected = new CarModel(1L, "Ford Falcon", CarModelType.SEDAN, new CarMake(1L, CarMakeName.FORD, "USA"));
         assertTrue(isModelEqual(expected, actual));
     }
 
@@ -169,7 +171,7 @@ public class CarInfoServiceImplIntegrationTest {
     @DisplayName("Test invalid car model by id.")
     void getCarModelByIdInValidTest() {
         CarModel actual = impl.getCarModelById(1L);
-        CarModel expected = new CarModel(999L, "XXX", CarModelType.UTE, new CarMake(999L, "XXX", "XXX"));
+        CarModel expected = new CarModel(999L, "XXX", CarModelType.UTE, new CarMake(999L, CarMakeName.FORD, "XXX"));
         assertFalse(isModelEqual(expected, actual));
     }
 
@@ -192,16 +194,16 @@ public class CarInfoServiceImplIntegrationTest {
     //* This needs to match the make data in data.sql for the integration tests to be successful.
     private List<CarMake> generateValidMakeData() {
         List<CarMake> makes = new ArrayList<>();
-        makes.add(new CarMake(1L,"FORD","USA"));
-        makes.add(new CarMake(2L,"AUDI","Germany"));
+        makes.add(new CarMake(1L,CarMakeName.FORD,"USA"));
+        makes.add(new CarMake(2L,CarMakeName.AUDI,"Germany"));
         return makes;
     }
 
     //* This needs to match the make data in data.sql for the integration tests to be successful.
     private List<CarModel> generateValidModelsData() {
         List<CarModel> models = new ArrayList<>();
-        CarMake ford = new CarMake(1L,"FORD","USA");
-        CarMake audi = new CarMake(2L,"AUDI","Germany");
+        CarMake ford = new CarMake(1L,CarMakeName.FORD,"USA");
+        CarMake audi = new CarMake(2L,CarMakeName.AUDI,"Germany");
 
         models.add(new CarModel(1L, "Ford Falcon", CarModelType.SEDAN, ford));
         models.add(new CarModel(2L, "Ford Focus Sedan", CarModelType.SEDAN, ford));
@@ -219,8 +221,8 @@ public class CarInfoServiceImplIntegrationTest {
     //* This should not match the make data in data.sql for the integration tests to be successful.
     private List<CarMake> generateInValidMakeData() {
         List<CarMake> makes = new ArrayList<>();
-        makes.add(new CarMake(1L,"XXX","XXX"));
-        makes.add(new CarMake(2L,"YYY","YYY"));
+        makes.add(new CarMake(1L,CarMakeName.FORD,"XXX"));
+        makes.add(new CarMake(2L,CarMakeName.AUDI,"YYY"));
         return makes;
     }
 

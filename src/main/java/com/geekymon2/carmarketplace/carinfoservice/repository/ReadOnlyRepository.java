@@ -1,5 +1,6 @@
 package com.geekymon2.carmarketplace.carinfoservice.repository;
 
+import com.geekymon2.carmarketplace.core.CarMakeName;
 import org.springframework.data.repository.NoRepositoryBean;
 import org.springframework.data.repository.Repository;
 
@@ -11,6 +12,6 @@ public interface ReadOnlyRepository<T, ID> extends Repository<T, ID> {
     Optional<T> findById(ID id);
     List<T> findAll();
     Long count();
-    List<T> findByName(String name);
-    T findOneByName(String name);
+    List<T> findByName(CarMakeName name);
+    T findOneByName(CarMakeName name);
 }
