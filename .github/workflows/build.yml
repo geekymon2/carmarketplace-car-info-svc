@@ -38,7 +38,7 @@ jobs:
         distribution: 'adopt'
         cache: maven 
     - name: build root
-      run: mvn -N install --file root/pom.xml
+      run: mvn install --file root/pom.xml
     - name: build service
       run: mvn -B test package jacoco:report --file service/pom.xml -Dspring.profiles.active=test
     - name: Upload to codecov
