@@ -5,7 +5,7 @@ import com.geekymon2.carmarketplace.carinfoservice.entities.CarModel;
 import com.geekymon2.carmarketplace.carinfoservice.entities.CarModelType;
 import com.geekymon2.carmarketplace.carinfoservice.repository.CarMakeRepository;
 import com.geekymon2.carmarketplace.carinfoservice.repository.CarModelRepository;
-import com.geekymon2.carmarketplace.core.CarMakeName;
+import com.geekymon2.carmarketplace.core.entities.CarMakeName;
 
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;

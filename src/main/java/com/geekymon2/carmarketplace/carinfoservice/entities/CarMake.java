@@ -11,7 +11,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
-import com.geekymon2.carmarketplace.core.CarMakeName;
+import com.geekymon2.carmarketplace.core.entities.CarMakeName;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

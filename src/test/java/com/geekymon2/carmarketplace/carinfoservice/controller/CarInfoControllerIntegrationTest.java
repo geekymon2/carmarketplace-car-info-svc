@@ -12,11 +12,11 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import com.geekymon2.carmarketplace.carinfoservice.entities.CarModelType;
-import com.geekymon2.carmarketplace.carinfoservice.exception.InvalidParameterException;
-import com.geekymon2.carmarketplace.carinfoservice.exception.RecordNotFoundException;
 import com.geekymon2.carmarketplace.carinfoservice.models.CarMakeDto;
 import com.geekymon2.carmarketplace.carinfoservice.models.CarModelDto;
 import com.geekymon2.carmarketplace.carinfoservice.serviceimpl.CarInfoServiceImpl;
+import com.geekymon2.carmarketplace.core.exception.InvalidParameterException;
+import com.geekymon2.carmarketplace.core.exception.RecordNotFoundException;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;

@@ -1,6 +1,6 @@
 package com.geekymon2.carmarketplace.carinfoservice.exception;
 
-import com.geekymon2.carmarketplace.carinfoservice.models.ErrorResponseDto;
+import com.geekymon2.carmarketplace.core.models.ErrorResponseDto;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;
@@ -8,6 +8,9 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.context.request.ServletWebRequest;
 import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
+import com.geekymon2.carmarketplace.core.exception.InvalidParameterException;
+import com.geekymon2.carmarketplace.core.exception.RecordNotFoundException;
+import com.geekymon2.carmarketplace.core.exception.MissingHeaderInfoException;
 
 import lombok.Generated;
 
