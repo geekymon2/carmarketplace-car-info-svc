@@ -5,7 +5,7 @@ spring:
     url: jdbc:mysql://localhost:3306/carinfodbdev
     driverClassName: com.mysql.jdbc.Driver
     username: root
-    password: '{cipher}375d926fffc448580bf62d3fa5489af61c97100ceefb62f2ff58db8c0010a8ca'
+    password: 'P@ssw0rd'
   jpa:
     database-platform: org.hibernate.dialect.MySQL55Dialect
     defer-datasource-initialization: true

@@ -12,9 +12,10 @@ import com.geekymon2.carmarketplace.carinfoservice.entities.CarModelType;
 import com.geekymon2.carmarketplace.carinfoservice.repository.CarMakeRepository;
 import com.geekymon2.carmarketplace.carinfoservice.repository.CarModelRepository;
 import com.geekymon2.carmarketplace.carinfoservice.service.CarInfoService;
+import com.geekymon2.carmarketplace.carinfoservice.validation.CarInfoValidator;
 import com.geekymon2.carmarketplace.core.entities.CarMakeName;
-import com.geekymon2.carmarketplace.core.exception.InvalidParameterException;
 import com.geekymon2.carmarketplace.core.exception.RecordNotFoundException;
+import com.geekymon2.carmarketplace.core.exception.InvalidParameterException;
 
 import org.springframework.stereotype.Service;
 
@@ -23,10 +24,12 @@ public class CarInfoServiceImpl implements CarInfoService {
 
     private final CarMakeRepository carMakeRepository;
     private final CarModelRepository carModelRepository;
+    private final CarInfoValidator validator;
 
-    public CarInfoServiceImpl(CarMakeRepository carMakeRepository, CarModelRepository carModelRepository) {
+    public CarInfoServiceImpl(CarMakeRepository carMakeRepository, CarModelRepository carModelRepository, CarInfoValidator validator) {
         this.carMakeRepository = carMakeRepository;
         this.carModelRepository = carModelRepository;
+        this.validator = validator;
     }
 
     @Override
@@ -50,15 +53,25 @@ public class CarInfoServiceImpl implements CarInfoService {
 
     @Override
     public List<CarModel> getCarModels(String makeName, String typeName) {
-        CarMake make = validateMake(makeName);
-        CarModelType type = validateType(typeName);
-        if (make == null && type == null) {
+        CarMake make = null;
+        CarMakeName name = validator.validateMakeName(makeName);
+        CarModelType type = validator.validateType(typeName);
+
+        //after validation if both make name and type are null then return all.
+        if (name == null && type == null) {
             List<CarModel> models = new ArrayList<>();
             carModelRepository.findAll().forEach(models::add);
             return models;
         }
         else {
-            return carModelRepository.findByMakeIdAndType((make != null) ? make.getId() : null, type);
+            if (name != null) {
+                make = carMakeRepository.findOneByName(name);
+                if (make == null) {
+                    throw new InvalidParameterException(String.format("Invalid make '%s'", makeName));
+                }
+            }
+
+            return carModelRepository.findByMakeIdAndType((make != null) ? make.getId() : null, type);          
         }
     }
 
@@ -87,45 +100,5 @@ public class CarInfoServiceImpl implements CarInfoService {
     @Override
     public List<CarModelType> getCarModelTypes() {
         return Arrays.stream(CarModelType.values()).collect(Collectors.toList());
-    }
-
-    private CarMake validateMake(String makeName) {
-        CarMake make;
-        CarMakeName name;
-
-        //first check for nulls and blanks
-        if (makeName == null || makeName.isBlank()) {
-            return null;
-        }
-
-        try {
-            name = CarMakeName.valueOf(makeName);
-        } catch (IllegalArgumentException e) {
-            throw new InvalidParameterException(String.format("Invalid make '%s'", makeName));
-        }
-
-        make = carMakeRepository.findOneByName(name);
-        if (make == null) {
-            throw new InvalidParameterException(String.format("Invalid make '%s'", makeName));
-        }
-
-        return make;
-
-    }
-
-    private CarModelType validateType(String typeName) {
-        CarModelType type;
-
-        if (typeName == null || typeName.isBlank()) {
-            return null;
-        }
-        else {
-            try {
-                type = CarModelType.valueOf(typeName);
-            } catch(IllegalArgumentException ex) {
-                throw new InvalidParameterException(String.format("type '%s' not found", typeName));
-            }
-            return type;
-        }
     }
 }

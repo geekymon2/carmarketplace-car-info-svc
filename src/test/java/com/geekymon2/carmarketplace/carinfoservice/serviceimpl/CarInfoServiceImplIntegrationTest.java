@@ -5,6 +5,7 @@ import com.geekymon2.carmarketplace.carinfoservice.entities.CarModel;
 import com.geekymon2.carmarketplace.carinfoservice.entities.CarModelType;
 import com.geekymon2.carmarketplace.carinfoservice.repository.CarMakeRepository;
 import com.geekymon2.carmarketplace.carinfoservice.repository.CarModelRepository;
+import com.geekymon2.carmarketplace.carinfoservice.validation.CarInfoValidator;
 import com.geekymon2.carmarketplace.core.entities.CarMakeName;
 
 import org.junit.jupiter.api.AfterEach;
@@ -33,8 +34,8 @@ public class CarInfoServiceImplIntegrationTest {
     private final CarInfoServiceImpl impl;
 
     @Autowired
-    public CarInfoServiceImplIntegrationTest(CarMakeRepository carMakeRepository, CarModelRepository carModelRepository) {
-        this.impl = new CarInfoServiceImpl(carMakeRepository, carModelRepository);
+    public CarInfoServiceImplIntegrationTest(CarMakeRepository carMakeRepository, CarModelRepository carModelRepository, CarInfoValidator validator) {
+        this.impl = new CarInfoServiceImpl(carMakeRepository, carModelRepository, validator);
     }
 
     @BeforeEach
