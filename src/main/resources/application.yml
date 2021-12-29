@@ -44,4 +44,4 @@ db:
 
 server:
   servlet:
-    context-path: /api/car-info
+    context-path: /api/car-info-service
