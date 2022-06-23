@@ -1,4 +1,4 @@
-name: build and deploy
+name: build
 
 on:
   push:
@@ -72,23 +72,4 @@ jobs:
         DOCKERHUB_USERNAME: ${{ secrets.DOCKER_USERNAME }}
         DOCKERHUB_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
         DOCKERHUB_REPOSITORY: geekymon2/${{ steps.docker.outputs.IMAGE_NAME }}   
-        README_FILEPATH: service/README.md   
-  
-  deployserviceci:
-    environment: ci
-    name: deploy CI
-    runs-on: [self-hosted, ci]
-    steps:
-    - name: checkout root  
-      uses: actions/checkout@v2
-      with:
-        repository: geekymon2/carmarketplace
-        path: root       
-    - name: checkout service
-      uses: actions/checkout@v2 
-      with:
-        path: service
-    - name: run deployment script
-      run: ./deploy.sh ci carinfodbci  ${{ secrets.DB_PASSWORD }}
-      working-directory: ./service
-    needs: buildservice
+        README_FILEPATH: service/README.md
