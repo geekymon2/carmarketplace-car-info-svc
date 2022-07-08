@@ -29,3 +29,9 @@ spring:
 eureka:
   client:
     enabled: false
+
+api-config:
+  jwt-config:
+    jwt-disabled: true
+    jwt-secret: secret
+    jwt-validity: 20

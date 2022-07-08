@@ -47,7 +47,7 @@ server:
     context-path: /api/car-info-service
 
 api-config:
-  security-config:
+  jwt-config:
     jwt-disabled: true
     jwt-secret: secret
     jwt-validity: 20
