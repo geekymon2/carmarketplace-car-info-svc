@@ -9,8 +9,6 @@ import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
 
 @EnableEurekaClient
 @SpringBootApplication
-@OpenAPIDefinition(info =
-@Info(title = "Car Info Service API", version = "1.0", description = "Documentation Car Info Service API v1.0"))
 public class CarInfoServiceApplication {
 
 	public static void main(String[] args) {
