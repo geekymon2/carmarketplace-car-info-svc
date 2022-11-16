@@ -45,9 +45,3 @@ db:
 server:
   servlet:
     context-path: /api/car-info-service
-
-api-config:
-  jwt-config:
-    jwt-disabled: true
-    jwt-secret: secret
-    jwt-validity: 20
