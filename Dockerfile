@@ -1,4 +1,4 @@
-FROM adoptopenjdk/openjdk11
+FROM adoptopenjdk/openjdk17
 LABEL maintainer="geekymon2@gmail.com"
 ARG ARTIFACT_NAME
 ARG IMAGE_VERSION
