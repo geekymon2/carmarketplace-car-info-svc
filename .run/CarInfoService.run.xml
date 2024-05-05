@@ -1,5 +1,8 @@
 <component name="ProjectRunConfigurationManager">
   <configuration default="false" name="CarInfoService" type="Application" factoryName="Application">
+    <envs>
+      <env name="SPRING_PROFILES_ACTIVE" value="local" />
+    </envs>
     <option name="MAIN_CLASS_NAME" value="com.geekymon2.carmarketplace.carinfoservice.CarInfoServiceApplication" />
     <module name="car-info-service" />
     <extension name="net.ashald.envfile">
