@@ -12,6 +12,16 @@ Microservices App for Car Marketplace
 
 This micro service provides information for car make brands and models. Get information on all the makes, models, and types of cars, also filter them by make and type. 
 
+## Local Environment Setup
+* To run locally set the SPRING profile to "local". 
+  * You can do this by setting environment variable SPRING_PROFILES_ACTIVE=local
+  * you can also set profile within the Intellij IDE
+* Swagger URL: http://localhost:8082/api/car-info-service/swagger-ui/index.html
+
+## CI environment Setup
+* CI is configured to use profile "ci"
+* TODO (Not working): Swagger URL: http://localhost:8181/api/v1/namespaces/carmarketplace-dev/services/http:car-info-service:8082/proxy/
+
 ## Documentation
 
 For more details refer to the swagger documentation.
