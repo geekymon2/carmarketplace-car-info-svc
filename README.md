@@ -20,7 +20,7 @@ This micro service provides information for car make brands and models. Get info
 
 ## CI environment Setup
 * CI is configured to use profile "ci"
-* TODO (Not working): Swagger URL: http://localhost:8181/api/v1/namespaces/carmarketplace-dev/services/http:car-info-service:8082/proxy/
+* TODO (Not working): Swagger URL: http://localhost:8001/api/v1/namespaces/carmarketplace-dev/services/http:car-info-service:8082/proxy/
 
 ## Documentation
 
