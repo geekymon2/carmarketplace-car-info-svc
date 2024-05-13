@@ -15,7 +15,7 @@ public class AppConfig {
     public OpenAPI api() {
         return new OpenAPI()
             .info(new Info().title("Car Info Service")
-                .description("Car Info Service API")
+                .description("Car Info Service API: This micro service provides information for car make brands and models. Get information on all the makes, models, and types of cars, also filter them by make and type.")
                 .version("v0.0.1")
                 .license(new License().name("Apache 2.0").url("http://springdoc.org")))
             .externalDocs(new ExternalDocumentation()
