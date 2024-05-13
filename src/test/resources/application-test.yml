@@ -30,7 +30,9 @@ eureka:
   client:
     enabled: false
 
+# dummy JWT config to load test application context
+# actual JWT config provided in unit / integration tests
 jwt-config:
-  jwt-disabled: true
+  jwt-disabled: false
   jwt-secret: secret
   jwt-validity: 20
