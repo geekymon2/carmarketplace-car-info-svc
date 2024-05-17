@@ -16,7 +16,11 @@ This micro service provides information for car make brands and models. Get info
 * To run locally set the SPRING profile to "local". 
   * You can do this by setting environment variable SPRING_PROFILES_ACTIVE=local
   * you can also set profile within the Intellij IDE
-* Swagger URL: http://localhost:8082/api/car-info-service/swagger-ui/index.html
+* Set the following environment variables.
+  * CARINFO_DB_NAME = carinfodbdev
+  * CARINFO_DB_PASSWORD = [PASSWORD]
+* Direct API Swagger URL: http://localhost:8082/api/car-info-service/swagger-ui/index.html
+* API Gateway: http://localhost:8008/api/swagger-ui/index.html
 
 ## CI environment Setup
 * CI is configured to use profile "ci"
