@@ -30,9 +30,16 @@ eureka:
   client:
     enabled: false
 
-# dummy JWT config to load test application context
-# actual JWT config provided in unit / integration tests
-jwt-config:
-  jwt-disabled: false
-  jwt-secret: secret
-  jwt-validity: 20
+# dummy config to load test application context
+app-config:
+  jwt-config:
+    jwt-disabled: false
+    jwt-secret: secret
+    jwt-validity: 20
+  cors-config:
+    allowed-origins: http://localhost:4200
+    max-age: 3600
+    allow-credentials: true
+    allowed-header: "*"
+    allowed-method: "*"
+    exposed-header: ""
