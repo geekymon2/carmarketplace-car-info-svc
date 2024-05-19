@@ -8,13 +8,11 @@ import com.geekymon2.carmarketplace.carinfoservice.models.CarModelDto;
 import com.geekymon2.carmarketplace.carinfoservice.models.StatusDto;
 import com.geekymon2.carmarketplace.carinfoservice.serviceimpl.CarInfoServiceImpl;
 import io.swagger.v3.oas.annotations.Operation;
+import jakarta.ws.rs.Path;
 import org.modelmapper.ModelMapper;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -83,7 +81,7 @@ public class CarInfoController {
 
     @Operation(summary = "Get all car models for a particular make", description = "Returns a list of car models for a particular make")
     @GetMapping(value = "/models")
-    public List<CarModelDto> getCarModelsByMakeAndType(String make, String type) {
+    public List<CarModelDto> getCarModelsByMakeAndType(@RequestParam(name = "make", required = true) String make, @RequestParam(name = "type") String type) {
         return service.getCarModels(make, type).stream().map(this::modelToDto).collect(Collectors.toList());
     }
 
