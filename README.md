@@ -7,8 +7,7 @@ Microservices App for Car Marketplace
 [![build](https://github.com/geekymon2/carmarketplace-car-info-svc/actions/workflows/build.yml/badge.svg)](https://github.com/geekymon2/carmarketplace-car-info-svc/actions/workflows/build.yml) &nbsp;&nbsp; [![codecov](https://codecov.io/gh/geekymon2/carmarketplace-car-info-svc/branch/main/graph/badge.svg?token=LH7ATDIHTB)](https://codecov.io/gh/geekymon2/carmarketplace-car-info-svc) &nbsp;&nbsp; ![Docker Image Version (latest by date)](https://img.shields.io/docker/v/geekymon2/cm-car-info-svc) &nbsp;&nbsp; ![Docker Image Size (latest by date)](https://img.shields.io/docker/image-size/geekymon2/cm-car-info-svc)
 
 ## About this Service
-
-**Car Info Service**
+__Car Info Service__
 
 This micro service provides information for car make brands and models. Get information on all the makes, models, and types of cars, also filter them by make and type. 
 
@@ -16,6 +15,8 @@ This micro service provides information for car make brands and models. Get info
 * To run locally set the SPRING profile to "local". 
   * You can do this by setting environment variable SPRING_PROFILES_ACTIVE=local
   * you can also set profile within the Intellij IDE
+* Ensure that the root **carmarketplace** and **carmarketplace-core** modules are installed.
+  * Check the local build instructions with that root project README.md
 * Set the following environment variables.
   * CARINFO_DB_NAME = carinfodbdev
   * CARINFO_DB_PASSWORD = [PASSWORD]
