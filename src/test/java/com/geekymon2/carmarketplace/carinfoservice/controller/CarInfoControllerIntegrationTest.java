@@ -18,6 +18,8 @@ import com.geekymon2.carmarketplace.carinfoservice.serviceimpl.CarInfoServiceImp
 import com.geekymon2.carmarketplace.core.exception.InvalidParameterException;
 import com.geekymon2.carmarketplace.core.exception.RecordNotFoundException;
 
+import com.geekymon2.carmarketplace.core.models.StatusDto;
+import lombok.SneakyThrows;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.modelmapper.ModelMapper;
@@ -132,7 +134,15 @@ public class CarInfoControllerIntegrationTest {
         assertThrows(RecordNotFoundException.class, () -> {
             controller.getCarModelById(99999999L);
         });
-    } 
+    }
+
+    @SneakyThrows
+    @Test
+    @DisplayName("Test status endpoint.")
+    void getStatus() {
+        StatusDto status = controller.getStatus();
+        assertEquals(status.getHostname(), java.net.InetAddress.getLocalHost().getHostName());
+    }
 
     @Test
     @DisplayName("Test get car models filter on make.")
