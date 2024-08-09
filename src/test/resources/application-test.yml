@@ -38,3 +38,5 @@ app-config:
     jwt-validity: 20
   cors-config:
     enabled: false
+  router-config:
+    open-endpoints: "/api-docs", "/eureka", "/actuator/refresh"
