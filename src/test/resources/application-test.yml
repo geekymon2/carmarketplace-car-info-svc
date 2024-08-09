@@ -39,4 +39,7 @@ app-config:
   cors-config:
     enabled: false
   router-config:
-    open-endpoints: "/api-docs", "/eureka", "/actuator/refresh"
+    open-endpoints:
+      - "/api-docs"
+      - "/eureka"
+      - "/actuator/refresh"
